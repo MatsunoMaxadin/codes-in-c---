@@ -1,15 +1,21 @@
+
 #include <iostream>
 using namespace std;
 
-const int MAX = 5;
-
-int searchEngine (int arr[MAX], int x) {
+int searchEngine (int *ptrArr, int MAX) {
     int i;
     int j = -1;
+    int x;
+    
+    cout << "Insira o número a ser buscado: " << endl;
+    cin >> x;
+    
     
     for(i = 0; i < MAX; i++){
-        if (arr[i] == x)
+        if (*ptrArr == x)
         return i;
+        
+        ptrArr++;
     };
     
     return j;
@@ -17,33 +23,28 @@ int searchEngine (int arr[MAX], int x) {
     
 };
 
-void initialSearch(int arr[MAX]){
-    int x;
+void initialArr (int *ptrArr, int MAX){
     
-    while(x != -2){
-    
-    cout << "Escolha o valor a ser encontrado" << endl;
-    cin >> x;
-    cout << "Este número possui o index de: " << searchEngine(arr, x) << endl;
-    }
-    
-};
-
-void initialArr (int arr[MAX]){
     int i;
     
     for (i = 0; i < MAX; i++){
         cout << "Insira o " << i+1 << " numero: " << endl;
-        cin >> arr[i];
+        cin >> *ptrArr;
+        ptrArr++;
     };
     
 };
 
 int main() {
+    int MAX;
+    
+    cout << "Insira o tamanho do array " << endl;
+    cin >> MAX;
+    
     int arr[MAX];
     
-    initialArr(arr);
+    initialArr(arr, MAX);
     
-    initialSearch(arr);
+    cout << "O índice do número buscado é: "<< searchEngine(arr, MAX);
     
-}
+} 
